@@ -23,7 +23,7 @@ const App = () => {
     leds: 4 * 8,
     brightness: 50,
     dma: 10,
-    stripType: "rgb",
+    stripType: "grb",
     gpio: 18,
   });
 
