@@ -1,6 +1,6 @@
-import { useInterval } from 'react-use';
-import { useState } from 'react';
+import { useState } from "react";
 import { Dot } from "./components/Dot";
+import { useInterval } from "./hooks/useInterval";
 import { Board } from "./renderer/board";
 import { ReactWs281x } from "./renderer/ReactWs281x";
 
@@ -10,13 +10,17 @@ const App = () => {
   const [index, setIndex] = useState(0);
 
   useInterval(() => {
-    setIndex((idx) => Math.max(idx + 1, 4 * 8));
-  }, 100)
-
+    setIndex((idx) => {
+      if (idx >= 4 * 8) return 0;
+      return idx + 1;
+    });
+  }, 100);
 
   return (
     <>
       <Dot index={index} rgb={[255, 0, 0]} />
+      <Dot index={index+2} rgb={[0, 255, 0]} />
+      <Dot index={index+2} rgb={[0, 0, 255]} />
     </>
   );
 };

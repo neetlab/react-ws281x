@@ -85,8 +85,9 @@ export const hostConfig: HostConfig<
   },
 
   commitUpdate: (instance, updatePayload) => {
-    instance.update(updatePayload.data, updatePayload.index);
+    instance.update(updatePayload.index, updatePayload.data);
     instance.container.$render();
+    console.log(instance);
   },
 
   appendChildToContainer: (container, instance) => {
