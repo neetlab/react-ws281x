@@ -1,5 +1,5 @@
 import { Dot } from './components/Dot';
-import { Container } from './renderer/container';
+import { Board } from './renderer/board';
 import { ReactWs281x } from './renderer/ReactWs281x';
 
 const noop = (): void => void {};
@@ -19,7 +19,7 @@ const App = () => {
 }
 
 (async () => {
-  const ctn = new Container(new Uint32Array(), {
+  const ctn = new Board({
     leds: 4 * 8,
     brightness: 255,
     dma: 10,

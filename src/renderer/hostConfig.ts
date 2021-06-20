@@ -1,6 +1,6 @@
 import { HostConfig } from 'react-reconciler';
 
-import { Container } from './container';
+import { Board } from './board';
 import { Dot } from './dot';
 
 const noop = (): void => { };
@@ -24,7 +24,7 @@ type NoTimeout = -1
 export const hostConfig: HostConfig<
   Type,
   Props,
-  Container,
+  Board,
   Instance,
   TextInstance,
   SuspenseInstance,

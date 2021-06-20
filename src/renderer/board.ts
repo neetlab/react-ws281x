@@ -1,14 +1,14 @@
 import Ws281x from "rpi-ws281x";
 import { Dot } from "./dot";
 
-export class Container {
+export class Board {
   private _pixels: Uint32Array;
   private _params: Ws281x.ConfigureParams;
 
-  constructor(pixels: Uint32Array, params: Ws281x.ConfigureParams) {
+  constructor(params: Ws281x.ConfigureParams) {
     Ws281x.configure(params);
-    this._pixels = pixels;
     this._params = params;
+    this._pixels = Uint32Array.from({ length: params.leds }, () => 0);
   }
 
   $render() {
