@@ -19,7 +19,7 @@ const App = () => {
 }
 
 (async () => {
-  const container = new Container(new Uint32Array(), {
+  const ctn = new Container(new Uint32Array(), {
     leds: 4 * 8,
     brightness: 255,
     dma: 10,
@@ -27,5 +27,6 @@ const App = () => {
     gpio: 18,
   });
 
+  const container = ReactWs281x.createContainer(ctn, 0, false, null);
   ReactWs281x.updateContainer(App(), container, null, noop);
 })();
