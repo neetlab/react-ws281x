@@ -11,7 +11,9 @@ export class Dot {
     index: number,
     data: number,
   ) {
+    this.container.remove(this);
     this.index = index;
     this.data = data;
+    this.container.add(this);
   }
 }

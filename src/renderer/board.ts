@@ -8,7 +8,7 @@ export class Board {
   constructor(params: Ws281x.ConfigureParams) {
     Ws281x.configure(params);
     this._params = params;
-    this._pixels = Uint32Array.from({ length: params.leds }, () => 0);
+    this._pixels = new Uint32Array(params.leds);
   }
 
   $render() {
@@ -16,15 +16,7 @@ export class Board {
   }
 
   $clear() {
-    Ws281x.render(Uint32Array.from({ length: this._params.leds }, () => 0));
-  }
-
-  setPixels(data: Uint32Array) {
-    this._pixels = data;
-  }
-
-  getPixels(): Uint32Array {
-    return this._pixels;
+    Ws281x.render(new Uint32Array(this._params.leds));
   }
 
   add(dot: Dot) {
