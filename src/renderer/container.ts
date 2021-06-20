@@ -3,10 +3,12 @@ import { Dot } from "./dot";
 
 export class Container {
   private _pixels: Uint32Array;
+  private _params: Ws281x.ConfigureParams;
 
   constructor(pixels: Uint32Array, params: Ws281x.ConfigureParams) {
     Ws281x.configure(params);
     this._pixels = pixels;
+    this._params = params;
   }
 
   $render() {
@@ -14,7 +16,7 @@ export class Container {
   }
 
   $clear() {
-    Ws281x.render(Uint32Array.from({ length: 4 * 8 }, () => 0));
+    Ws281x.render(Uint32Array.from({ length: this._params.leds }, () => 0));
   }
 
   setPixels(data: Uint32Array) {
