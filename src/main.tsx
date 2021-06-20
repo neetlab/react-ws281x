@@ -1,19 +1,22 @@
+import { useInterval } from 'react-use';
+import { useState } from 'react';
 import { Dot } from "./components/Dot";
 import { Board } from "./renderer/board";
 import { ReactWs281x } from "./renderer/ReactWs281x";
 
 const noop = (): void => void {};
 
-const red = 255;
-const green = 0;
-const blue = 0;
-const data = (red << 16) | (green << 8) | blue;
-
 const App = () => {
+  const [index, setIndex] = useState(0);
+
+  useInterval(() => {
+    setIndex((idx) => Math.max(idx + 1, 4 * 8));
+  }, 100)
+
+
   return (
     <>
-      <Dot index={1} data={data} />
-      <Dot index={5} data={data} />
+      <Dot index={index} rgb={[255, 0, 0]} />
     </>
   );
 };

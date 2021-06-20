@@ -1,8 +1,15 @@
-import React from "react";
+import { createElement } from "react";
 
 export interface DotProps {
   readonly index: number;
-  readonly data: number;
+  readonly rgb: [number, number, number];
 }
 
-export const Dot = 'Dot' as any as React.FC<DotProps>;
+export const Dot = (props: DotProps): JSX.Element => {
+  const { index, rgb } = props;
+
+  const [red, green, blue] = rgb;
+  const data = (red << 16) | (green << 8) | blue;
+
+  return createElement('Dot', { index, data });
+}
